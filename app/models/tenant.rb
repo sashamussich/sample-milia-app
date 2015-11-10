@@ -1,16 +1,14 @@
 class Tenant < ActiveRecord::Base
 
-   acts_as_universal_and_determines_tenant
+  acts_as_universal_and_determines_tenant
   has_many :members, dependent: :destroy
 
+
     def self.create_new_tenant(tenant_params, user_params, coupon_params)
-
       tenant = Tenant.new(:name => tenant_params[:name])
-
+      
       if new_signups_not_permitted?(coupon_params)
-
         raise ::Milia::Control::MaxTenantExceeded, "Sorry, new accounts not permitted at this time" 
-
       else 
         tenant.save    # create the tenant
       end
@@ -40,8 +38,12 @@ class Tenant < ActiveRecord::Base
       # any special seeding required for a new organizational tenant
       #
       Member.create_org_admin(user)
+      # Tenant.set_current_tenant tenant
       #
     end
 
-   
+    def set_current_tenant tenant
+      Tenant.set_current_tenant tenant
+    end
+
 end

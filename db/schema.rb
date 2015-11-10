@@ -11,15 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105131851) do
+ActiveRecord::Schema.define(version: 20151110132634) do
 
   create_table "members", force: :cascade do |t|
     t.integer  "tenant_id"
     t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
+    t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "cpf"
+    t.boolean  "admin"
+    t.boolean  "active"
+    t.string   "address"
+    t.string   "function"
+    t.boolean  "included"
   end
 
   add_index "members", ["tenant_id"], name: "index_members_on_tenant_id"
