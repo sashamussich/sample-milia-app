@@ -14,8 +14,8 @@
         #user-navigation
           %ul.wat-cf
             %li
-              - if user_signed_in?
-                = link_to( t("web-app-theme.invite", :default => "Create new invstigator"), new_member_path )
+              - if user_signed_in? 
+                = link_to( t("web-app-theme.invite", :default => "Create new invstigator"), new_member_path ) if current_user.member.admin?
               - else
                 = link_to( t("web-app-theme.signup", :default => "Sign up"), new_user_registration_path )
             %li

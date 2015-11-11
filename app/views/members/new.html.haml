@@ -6,7 +6,7 @@
       - flash.each do |type, message|
         %div{ :class => "message #{type}" }
           %p= message
-    - flash.clear  # clear contents so we won't see it again
+      - flash.clear  # clear contents so we won't see it again
 
     = form_for(@member, :html => { :class => "form login" }) do |f|
       - unless @member.errors.empty? && @user.errors.empty?

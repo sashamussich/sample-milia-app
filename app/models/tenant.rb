@@ -38,12 +38,6 @@ class Tenant < ActiveRecord::Base
       # any special seeding required for a new organizational tenant
       #
       Member.create_org_admin(user)
-      # Tenant.set_current_tenant tenant
-      #
-    end
-
-    def set_current_tenant tenant
-      Tenant.set_current_tenant tenant
     end
 
 end

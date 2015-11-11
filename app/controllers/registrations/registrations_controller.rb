@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+  class Registrations::RegistrationsController < Devise::RegistrationsController
 
   skip_before_action :authenticate_tenant!, :only => [:new, :create, :cancel]
 
@@ -141,7 +141,7 @@ end   # def create
 # ------------------------------------------------------------------------------
   def after_sign_up_path_for(resource)
     headers['refresh'] = "0;url=#{root_path}"
-    root_path
+    edit_member_path resource
   end
 
 # ------------------------------------------------------------------------------
@@ -167,5 +167,3 @@ end   # def create
 # ------------------------------------------------------------------------------
 
   end   # class Registrations
-
-end  # module Milia
