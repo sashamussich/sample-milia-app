@@ -19,7 +19,6 @@ class MembersController < ApplicationController
       @member = Member.new( member_params ) # only used if need to revisit form
       render :new
     end
-
   end
 
   def edit
@@ -29,9 +28,15 @@ class MembersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    Member.find_by(user_id: user.id).update(personal_data_params, active: true)
+    member = Member.find_by(user_id: user.id)
+    member.update(personal_data_params)
+    member.active = true
+    member.save
     redirect_to root_path
-  end  
+  end 
+
+  def admin_profile
+  end 
 
   private
 

@@ -38,7 +38,9 @@
   def show
     if @confirmable.new_record?  ||
        !::Milia.use_invite_member || 
-       @confirmable.skip_confirm_change_password
+       @confirmable.skip_confirm_change_password 
+
+      sign_in_tenanted_and_redirect if !@confirmable.member.nil?
 
       log_action( "devise pass-thru" )
       super  # this will redirect 
@@ -92,6 +94,8 @@
         # redirect_to after_sign_in_path_for(resource)
       end
 
-
+      def sign_up_admin_member resource
+        redirect_to members_admin_profile_path resource
+      end
 
   end  # class
